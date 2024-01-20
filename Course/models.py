@@ -9,9 +9,6 @@ from django.utils import timezone
 
 catgorey_name = [('software_test','software_test'),('devoloper','devoloper'),('Data_Analysis','Data_Analysis')]
 
-
-
-
 class Course(models.Model):
     name= models.CharField(max_length=200,blank=True, null=True)
     subtitle=models.name = models.CharField(max_length=300,blank=True, null=True)
@@ -25,10 +22,12 @@ class Course(models.Model):
         return self.name
     
 
-
-
-class reviews(models.Model):
-    name = models.ForeignKey(Course,on_delete= models.CASCADE, related_name='reviews')
-
-
+class Reviews(models.Model):
+    user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True)
+    course = models.ForeignKey(Course, related_name='courses_review', on_delete=models.CASCADE)
+    review = models.TextField(max_length=500)
+    rate = models.IntegerField()
+    created_at = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return f'{self.user}  {self.course}'
 
