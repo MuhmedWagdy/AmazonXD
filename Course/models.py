@@ -18,6 +18,11 @@ class Course(models.Model):
     discription = models.TextField(max_length= 1000)
     price = models.FloatField(max_length=10)
     category=models.Choices(catgorey_name)
+
+
+
+    def __str__(self):
+        return self.name
     
 
 
