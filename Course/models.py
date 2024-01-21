@@ -27,7 +27,7 @@ class Course(models.Model):
 
 
     def __str__(self):
-        return  f'{self.name} Price is {self.price }'
+        return  f'{self.name}'
     
 class Reviews(models.Model):
     # User maybe comment review  Use SET_NULL
@@ -36,6 +36,7 @@ class Reviews(models.Model):
     review = models.TextField(max_length=400)
     rate = models.IntegerField()
     created_at = models.DateTimeField(default=timezone.now)
+
     def __str__(self):
         return f'{self.user}  {self.course}'
 

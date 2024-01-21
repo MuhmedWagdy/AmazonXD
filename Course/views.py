@@ -17,5 +17,16 @@ def course_detail(request,course_id):
     data = Course.objects.get(id=course_id)
     return render(request,'course_detail.html',{'data':data})
 
+
+
+
+
+def course_review(request):
+
+
+    review = Reviews.objects.all()
+
+    return render(request,'reviews_course.html',{'review':review})
+
     
 

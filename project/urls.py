@@ -19,13 +19,14 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from Course.views import all_course,course_detail
+from Course.views import all_course,course_detail,course_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('course/', all_course),
-    path('course/<int:course_id>', course_detail)
+    path('course/<int:course_id>', course_detail),
+    path('reviews/',course_review)
 ]
 
 
