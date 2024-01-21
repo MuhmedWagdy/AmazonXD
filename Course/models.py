@@ -35,7 +35,7 @@ class Course(models.Model):
   
 class Reviews(models.Model):
     # User maybe comment review  Use SET_NULL
-    user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True,blank=True)
     course = models.ForeignKey(Course, related_name='course_review', on_delete=models.CASCADE)
     review = models.TextField(max_length=400)
     rate = models.IntegerField()
