@@ -1,10 +1,8 @@
 from django.db import models
-
 from django.contrib.auth.models import User
-
 from django.utils import timezone
-
 from taggit.managers import TaggableManager
+
 
 
 # Create your models here.
@@ -23,8 +21,7 @@ class Course(models.Model):
     price = models.FloatField(max_length=10)
     category=models.CharField(choices= FLAG_TYPES,max_length=20)
     # tags = TaggableManager()
-
-
+    
 
     def __str__(self):
         return  f'{self.name}'
