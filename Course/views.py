@@ -34,21 +34,37 @@ def course_new(request):
     if request.method=='POST':
         form = CourseForm(request.POST)
         if form.is_valid():
-            form.save()
+            myform= form.save(commit=False)
+            myform.save()
             return redirect('/course')
     else:
-        form = CourseForm()
+        form=CourseForm()
 
     return render(request,'new_course.html',{'form':form})
 
 
 
 def edit_course(request,course_id):
+      data = Course.objects.get(id=course_id)
+      if request.method=='POST':
+        form = CourseForm(request.POST,request.FILES,instance=data)
+        if form.is_valid():
+            myform= form.save(commit=False)
+            myform.save()
+            return redirect('/course')
+      else:
+        form=CourseForm(instance=data)
+      return render(request,'edit_course.html',{'form':form})
 
-    pass
+
+  
 
 def delete_course(request,course_id):
-    pass
+    data = Course.objects.get(id=course_id)
+    data.delete()
+    return redirect('/course')
+
+   
 
 
 
