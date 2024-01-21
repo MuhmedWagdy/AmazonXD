@@ -17,9 +17,6 @@ FLAG_TYPES = (
 
 
 class Course(models.Model):
-    
-
-
     name= models.CharField(max_length=200,blank=True, null=True)
     subtitle=models.name = models.CharField(max_length=300,blank=True, null=True)
     discription = models.TextField(max_length= 1000)
@@ -30,9 +27,8 @@ class Course(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return  f'{self.name} Price is {self.price }'
     
-  
 class Reviews(models.Model):
     # User maybe comment review  Use SET_NULL
     user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True,blank=True)
