@@ -4,19 +4,39 @@ from django.shortcuts import render ,redirect
 
 from .models import Course,Reviews
 from .forms import CourseForm
+from django.views.generic import ListView,DetailView
 
 
-
+#function based views
 def all_course(request):
-
     data = Course.objects.all()
-    return render(request,'course_list.html',{'data':data})
+    return render(request,'Course/course_list.html',{'data':data})
 
+#class based views
 
+class CourseList(ListView):
+    model= Course
 
+# ==============================================================================================================================================================================
+#function based views
 def course_detail(request,course_id):
     data = Course.objects.get(id=course_id)
-    return render(request,'course_detail.html',{'data':data})
+    return render(request,'Course/course_detail.html',{'data':data})
+
+
+#class bassed views
+class CourseDetail(DetailView):
+    model= Course
+
+#==================================================================================================================================================================================
+
+
+
+
+
+
+
+
 
 
 
@@ -27,7 +47,7 @@ def course_review(request):
 
     review = Reviews.objects.all()
 
-    return render(request,'reviews_course.html',{'review':review})
+    return render(request,'Course/reviews_course.html',{'review':review})
 
 
 def course_new(request):
@@ -40,7 +60,7 @@ def course_new(request):
     else:
         form=CourseForm()
 
-    return render(request,'new_course.html',{'form':form})
+    return render(request,'Course/new_course.html',{'form':form})
 
 
 
@@ -54,7 +74,7 @@ def edit_course(request,course_id):
             return redirect('/course')
       else:
         form=CourseForm(instance=data)
-      return render(request,'edit_course.html',{'form':form})
+      return render(request,'Course/edit_course.html',{'form':form})
 
 
   
