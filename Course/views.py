@@ -4,7 +4,7 @@ from django.shortcuts import render ,redirect
 
 from .models import Course,Reviews
 from .forms import CourseForm
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 
 
 #function based views
@@ -29,6 +29,14 @@ class CourseDetail(DetailView):
     model= Course
 
 #==================================================================================================================================================================================
+
+class CreateCourse(CreateView):
+    model = Course
+    fields=['name','subtitle','discription','price','category']
+
+    success_url='/course'
+
+
 
 
 
