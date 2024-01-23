@@ -4,7 +4,7 @@ from django.shortcuts import render ,redirect
 
 from .models import Course,Reviews
 from .forms import CourseForm
-from django.views.generic import ListView,DetailView,CreateView
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 
 
 #function based views
@@ -39,17 +39,6 @@ class CreateCourse(CreateView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 def course_review(request):
 
 
@@ -71,7 +60,7 @@ def course_new(request):
     return render(request,'Course/new_course.html',{'form':form})
 
 
-
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def edit_course(request,course_id):
       data = Course.objects.get(id=course_id)
       if request.method=='POST':
@@ -83,14 +72,35 @@ def edit_course(request,course_id):
       else:
         form=CourseForm(instance=data)
       return render(request,'Course/edit_course.html',{'form':form})
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class Course_Update(UpdateView):
+    model= Course
+    fields=['name','subtitle','discription','price','category']
+    success_url='/course'
+    template_name='Course/Course_update.html'
 
 
-  
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def delete_course(request,course_id):
     data = Course.objects.get(id=course_id)
     data.delete()
     return redirect('/course')
+
+
+
+
+
+class DeleteCourse(DeleteView):
+    model =  Course
+    success_url='/course'
+
+
+
+
+
 
    
 
