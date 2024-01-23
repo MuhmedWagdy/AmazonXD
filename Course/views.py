@@ -30,8 +30,18 @@ class CourseList(ListView):
 #function based views
 def course_detail(request,pk):
     data = Course.objects.get(id=pk)
-    form = ReviewForm()
-    return render(request,'Course/course_detail.html',{'data':data,'form':form})
+    course_review = Reviews.objects.filter(course=data)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.user= request.user
+            myform.review = data
+            myform.save()
+    else:
+
+       form = ReviewForm()
+    return render(request,'Course/course_detail.html',{'data':data,'form':form,'course_review':course_review})
 
 
 #class bassed views

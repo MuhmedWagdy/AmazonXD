@@ -11,14 +11,25 @@
 
 <hr/>
 <h3>Reviews</h3>
-<hr/>
+    <ul>
+        
+        {% for review in  course_review %}
+            <li>
+                <h5>{{review.user}} - {{review.course}} -- {{review.created_at}}</h5>
+            </li>
+        {% endfor %}
+    <ul/>
+ <hr/>
+
+ 
 <h3>Add New Review</h3>
-
-
 <form method="post">
+    {% csrf_token %}
+  
+
+        {{form}}
 
 
-    {{form}}
 
     <input type="submit" value = "Add New Review">
 

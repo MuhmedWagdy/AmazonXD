@@ -27,14 +27,14 @@ class Course(models.Model):
         return  f'{self.name}'
     
 
-    
+
     
 class Reviews(models.Model):
     # User maybe comment review  Use SET_NULL
     user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True,blank=True)
-    course = models.ForeignKey(Course, related_name='course_review', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, related_name='course_review', on_delete=models.CASCADE,null=True,blank=True)
     review = models.TextField(max_length=400)
-    rate = models.IntegerField()
+    rate = models.IntegerField(null=True,blank=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
