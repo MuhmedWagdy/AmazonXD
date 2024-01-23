@@ -23,11 +23,13 @@ from Course.views import all_course,course_detail,course_review,course_new,edit_
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('course/', all_course),
-    # path('course/<int:course_id>', course_detail),
+    path('course/<int:pk>', course_detail),
     path('reviews/',course_review),
+    # path('reviews/<int:pk>',review_detail),
     # path('course/new',course_new),
     # path('course/<int:course_id>/edit',edit_course),
     # path('course/<int:course_id>/delete',delete_course),
+
 
 
     #CLASS BASED VIEWS

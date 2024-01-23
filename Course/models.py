@@ -26,6 +26,9 @@ class Course(models.Model):
     def __str__(self):
         return  f'{self.name}'
     
+
+    
+    
 class Reviews(models.Model):
     # User maybe comment review  Use SET_NULL
     user = models.ForeignKey(User, related_name='user_review', on_delete=models.SET_NULL, null=True,blank=True)

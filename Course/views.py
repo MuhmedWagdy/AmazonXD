@@ -3,8 +3,17 @@ from django.shortcuts import render ,redirect
 # Create your views here.
 
 from .models import Course,Reviews
-from .forms import CourseForm
+from .forms import CourseForm,ReviewForm
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
+
+
+
+# def review_detail(request,pk):
+#     data = Reviews.objects.get(id=pk)
+
+#     form = ReviewForm()
+#     return render(request,'Course/reviews_course.html',{'data':data,'form':form})
+
 
 
 #function based views
@@ -19,9 +28,10 @@ class CourseList(ListView):
 
 # ==============================================================================================================================================================================
 #function based views
-def course_detail(request,course_id):
-    data = Course.objects.get(id=course_id)
-    return render(request,'Course/course_detail.html',{'data':data})
+def course_detail(request,pk):
+    data = Course.objects.get(id=pk)
+    form = ReviewForm()
+    return render(request,'Course/course_detail.html',{'data':data,'form':form})
 
 
 #class bassed views
@@ -81,13 +91,15 @@ class Course_Update(UpdateView):
     template_name='Course/Course_update.html'
 
 
-
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def delete_course(request,course_id):
     data = Course.objects.get(id=course_id)
     data.delete()
     return redirect('/course')
+
+
+
 
 
 
