@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Course',
     "taggit",
-    "bootstrap5",
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
