@@ -52,18 +52,12 @@ class CourseDetail(DetailView):
 
 class CreateCourse(CreateView):
     model = Course
-    fields=['name','subtitle','discription','price','category']
-
+    fields=['name','subtitle','discription','price','categorie']
     success_url='/course'
 
 
-
-
 def course_review(request):
-
-
     review = Reviews.objects.all()
-
     return render(request,'Course/reviews_course.html',{'review':review})
 
 
@@ -76,8 +70,7 @@ def course_new(request):
             return redirect('/course')
     else:
         form=CourseForm()
-
-    return render(request,'Course/new_course.html',{'form':form})
+    return render(request,'Course/course_form.html',{'form':form})
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
