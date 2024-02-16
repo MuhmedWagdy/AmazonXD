@@ -1,6 +1,5 @@
 from django import forms
 
-
 from .models import Course,Reviews
 
 
@@ -11,14 +10,11 @@ class CourseForm(forms.ModelForm):
         # exclude = ('user',)
 
 
-
-
 class ReviewForm(forms.ModelForm):
 
     class Meta:
          
          model= Reviews
-
          fields = ['review']
 
 

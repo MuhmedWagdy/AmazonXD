@@ -29,7 +29,7 @@ class Categories(models.Model):
 
 class Course(models.Model):
     name= models.CharField(max_length=200,blank=True, null=True)
-    subtitle=models.name = models.CharField(max_length=300,blank=True, null=True)
+    subtitle= models.name = models.CharField(max_length=300,blank=True, null=True)
     discription = models.TextField(max_length= 1000)
     price = models.FloatField(max_length=10)
     # category=models.CharField(choices= FLAG_TYPES,max_length=20)
