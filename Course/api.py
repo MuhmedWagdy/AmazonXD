@@ -30,7 +30,7 @@ class CourseDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 @api_view(['GET'])
@@ -38,6 +38,28 @@ def review_list_api(request):
     course = Reviews.objects.all()[:15]        #list all Course 
     data = ReviewSerializer(course,many=True,context={'request':request}).data      #json 
     return Response({'course':data})                  
+
+
+@api_view(['GET'])
+def review_list_api(request,course_id):
+    course = Reviews.objects.get(id=course_id)        #list all Course 
+    data = ReviewSerializer(course,many=True,context={'request':request}).data      #json 
+    return Response({'course':data})   
+
+
+
+class ReviewListAPI(generics.ListCreateAPIView):
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewSerializer
+
+
+class ReviewDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewSerializer
+#////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 
