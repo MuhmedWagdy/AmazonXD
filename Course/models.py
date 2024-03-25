@@ -52,5 +52,5 @@ class Reviews(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f'{self.user}  {self.course}'
+        return f'str{self.user}  {self.course}'
 
